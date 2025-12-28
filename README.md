@@ -34,7 +34,7 @@ sudo apt install python3 python3-pip -y
 nano ipport.py
 nano anti.py
 
-python3 ipport.py
-python3 anti.py
+```python3 ipport.py```
+```python3 anti.py```
 
 
