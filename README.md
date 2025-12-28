@@ -1,6 +1,6 @@
 PYTHON AND DISCORD INSTALL COMMANDS
 
-# 1. Update packages
+```# 1. Update packages
 sudo apt update
 
 # 2. Install prerequisites
@@ -23,16 +23,16 @@ sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin dock
 
 # 7. Verify Docker installation
 docker --version
-docker run hello-world
+docker run hello-world```
 
 
-sudo apt install python3-pip -y
+```sudo apt install python3-pip -y```
 
-sudo apt update
-sudo apt install python3 python3-pip -y
+```sudo apt update```
+```sudo apt install python3 python3-pip -y```
 
-nano ipport.py
-nano anti.py
+```nano ipport.py```
+```nano anti.py```
 
 ```python3 ipport.py```
 ```python3 anti.py```
