@@ -1,5 +1,3 @@
-FILE NAME antibot.py
-
 import discord
 from discord.ext import commands
 import re
@@ -135,3 +133,4 @@ async def setup_pus(ctx, channel: discord.TextChannel):
 
 # ================= RUN =================
 bot.run(TOKEN)
+
