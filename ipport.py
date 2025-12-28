@@ -1,5 +1,3 @@
-FILE NAME ipport.py
-
 import discord
 from discord.ext import commands
 import aiohttp
@@ -45,3 +43,4 @@ async def on_message(message):
     await bot.process_commands(message)
 
 bot.run(TOKEN)
+
