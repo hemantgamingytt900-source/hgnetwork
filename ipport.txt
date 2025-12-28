@@ -1,0 +1,47 @@
+FILE NAME ipport.py
+
+import discord
+from discord.ext import commands
+import aiohttp
+
+TOKEN = "YOUR_BOT_TOKEN_HERE"
+
+intents = discord.Intents.default()
+intents.messages = True
+intents.message_content = True  # Important to read messages
+bot = commands.Bot(command_prefix="/", intents=intents)
+
+SERVER_IP = "play.hgnetwork.fun"
+SERVER_PORT = 25565
+
+# Function to check server status (basic ping using Minecraft API)
+async def get_server_status(ip, port):
+    url = f"https://api.mcsrvstat.us/2/{ip}"
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as response:
+            if response.status == 200:
+                data = await response.json()
+                if data.get("online"):
+                    return f"🟢 Online | Players: {data.get('players', {}).get('online', 0)}/{data.get('players', {}).get('max', '?')}"
+                else:
+                    return "🔴 Offline"
+            else:
+                return "⚠️ Could not fetch status"
+
+@bot.event
+async def on_message(message):
+    if message.author.bot:
+        return
+    
+    # Check if the message is 'ip' in any capitalization
+    if message.content.lower() == "ip":
+        status = await get_server_status(SERVER_IP, SERVER_PORT)
+        embed = discord.Embed(title="Minecraft Server Info", color=0x00ff00)
+        embed.add_field(name="IP", value=SERVER_IP, inline=False)
+        embed.add_field(name="PORT", value=SERVER_PORT, inline=False)
+        embed.add_field(name="STATUS", value=status, inline=False)
+        await message.channel.send(embed=embed)
+    
+    await bot.process_commands(message)
+
+bot.run(TOKEN)
